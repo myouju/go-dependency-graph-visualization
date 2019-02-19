@@ -1,3 +1,5 @@
+cd $1
+
 BASE_DIR=$(pwd)
 BASE_HOST=$(basename $(dirname $(dirname $(pwd))))
 BASE_ORG=$(basename $(dirname $(pwd)))
