@@ -1,6 +1,6 @@
+BASE_DIR=$(pwd)
 cd $1
 
-BASE_DIR=$(pwd)
 BASE_HOST=$(basename $(dirname $(dirname $(pwd))))
 BASE_ORG=$(basename $(dirname $(pwd)))
 BASE_REPO=$(basename $(pwd))
@@ -17,8 +17,8 @@ do
   do
     edge=$(echo "g.setEdge('$package','$p');" | sed -e "s:$BASE_HOST/$BASE_ORG/$BASE_REPO/::g")
     EDGES+=($edge)
-  done < <(go list -f '{{join .Imports "\n"}}' | grep $BASE_REPO)
+  done < <(go list -f '{{join .Imports "\n"}}' | grep $BASE_REPO | grep -v vendor)
 done < <(go list ./...)
 cd $BASE_DIR
-. ./mo
+. $BASE_DIR/mo
 mo darge.html.mo
