@@ -3,7 +3,6 @@
 <meta charset="utf-8">
 <title>Dagre D3 Demo: Clusters</title>
 
-<link rel="stylesheet" href="darge.css">
 <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
 
