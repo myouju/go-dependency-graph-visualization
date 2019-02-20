@@ -11,14 +11,15 @@ export EDGES=()
 
 while read package
 do
-  node=$(echo "g.setNode('$package', {label: '$package'});" | sed -e "s:$BASE_HOST/$BASE_ORG/$BASE_REPO/::g")
+  node=$(echo "g.setNode('$package', {label: '$package'});")
   NODES+=( $node )
   cd $GOPATH/src/$package
   while read p
   do
-    edge=$(echo "g.setEdge('$package','$p');" | sed -e "s:$BASE_HOST/$BASE_ORG/$BASE_REPO/::g")
+    NODES+=( $(echo "g.setNode('$p', {label: '$p'});"))
+    edge=$(echo "g.setEdge('$package','$p');")
     EDGES+=($edge)
-  done < <(go list -f '{{join .Imports "\n"}}' | grep $BASE_REPO | grep -v vendor)
+  done < <(go list -f '{{join .Imports "\n"}}' | xargs go list -f '{{if not .Standard}}{{.ImportPath}}{{end}}')
 done < <(go list ./...)
 cd $BASE_DIR
 . $BASE_DIR/mo

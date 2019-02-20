@@ -32,7 +32,7 @@ text {
 }
 </style>
 
-<svg id="svg-canvas" width=960 height=600></svg>
+<svg id="svg-canvas"></svg>
 
 <script id="js">
 // Create the input graph
@@ -78,8 +78,8 @@ var svg = d3.select("svg"),
 // Run the renderer. This is what draws the final graph.
 render(d3.select("svg g"), g);
 
-// Center the graph
-var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
-svgGroup.attr("transform", "translate(" + xCenterOffset + ", 40)");
+document.getElementById("svg-canvas").style.width = g.graph().width + 40;
 svg.attr("height", g.graph().height + 80);
+// Center the graph
+svgGroup.attr("transform", "translate(20, 40)");
 </script>
