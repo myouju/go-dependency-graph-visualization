@@ -1,7 +1,6 @@
 <!doctype html>
 
 <meta charset="utf-8">
-<title>Dagre D3 Demo: Clusters</title>
 
 <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
@@ -35,7 +34,6 @@ text {
 
 <script id="js">
 // Create the input graph
-
 var g = new dagreD3.graphlib.Graph({compound:true})
   .setGraph({rankdir:"LR"})
   .setDefaultEdgeLabel(function() { return {}; });
@@ -46,15 +44,6 @@ var g = new dagreD3.graphlib.Graph({compound:true})
 {{.}}
 {{/NODES}}
 
-//// Set the parents to define which nodes belong to which cluster
-////g.setParent('top_group', 'group');
-////g.setParent('bottom_group', 'group');
-////g.setParent('b', 'top_group');
-////g.setParent('c', 'bottom_group');
-////g.setParent('d', 'bottom_group');
-////g.setParent('e', 'bottom_group');
-////g.setParent('f', 'bottom_group');
-//
 //// Set up edges, no special attributes.
 {{#EDGES}}
 {{.}}
