@@ -22,5 +22,8 @@ do
   done < <(go list -f '{{join .Imports "\n"}}' | xargs go list -f '{{if not .Standard}}{{.ImportPath}}{{end}}')
 done < <(go list ./...)
 cd $BASE_DIR
+if [ ! -f $BASE_DIR/mo ]; then
+  curl https://raw.githubusercontent.com/tests-always-included/mo/master/mo > $BASE_DIR/mo
+fi
 . $BASE_DIR/mo
 mo darge.html.mo

@@ -21,5 +21,8 @@ do
   done < <(go list -f '{{join .Imports "\n"}}' | grep $BASE_REPO | grep -v vendor)
 done < <(go list ./...)
 cd $BASE_DIR
+if [ ! -f $BASE_DIR/mo ]; then
+  curl https://raw.githubusercontent.com/tests-always-included/mo/master/mo > $BASE_DIR/mo
+fi
 . $BASE_DIR/mo
 mo darge.html.mo
